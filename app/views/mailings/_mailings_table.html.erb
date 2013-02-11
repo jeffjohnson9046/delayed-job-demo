@@ -1,0 +1,20 @@
+<table class="table table-hover table-striped table-bordered">
+  <thead>
+  <tr>
+    <th>Subject</th>
+    <th>Last Delivered Date/Time</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% campaigns.each do |m| %>
+      <tr>
+        <td><%= m.subject %></td>
+        <td><%= m.delivered_at ||= '<span class="muted"><em>never delivered</em></span>'.html_safe %></td>
+        <td style="text-align: center;"><%= link_to('<i class="icon-envelope"'.html_safe, deliver_mailing_path(m), :method => :post, :data => { :remote => true }, :title => "Spam the hell outta the subscribers!") %></td>
+        <td style="text-align: center;"><%= link_to('<i class="icon-edit"'.html_safe, edit_mailing_path(m), :title => "Edit this mailing.") %></td>
+        <td style="text-align: center;"><%= link_to('<i class="icon-remove"'.html_safe, m, :confirm => "Are you sure you want to delete this mailing?", :method => :delete, :title => "Delete this mailing.") %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spamalot! Email Campaign Manager:  Delayed Job Demo</title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="span10">
+          <div style="text-align: center;">
+            <%= render('layouts/messages') %>
+          </div>
+          <div id="content">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+<%= javascript_include_tag "application", "http://localhost:9292/faye.js" %>
+</html>

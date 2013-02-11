@@ -1,0 +1,1 @@
+Delayed::Worker.logger = ActiveSupport::BufferedLogger.new(Rails.root.join('log/worker.log'))

@@ -1,0 +1,30 @@
+<%= form_for(@mailing) do |f| %>
+    <fieldset>
+    <legend></legend>
+      <%= render('layouts/error_messages', :object => f.object) %>
+    <% unless @mailing.delivered_at.nil? %>
+        <div>
+            <small class="muted">This mailing was last delivered at <%= @mailing.delivered_at %></small>
+        </div>
+    <% end %>
+
+  <div class="control-group">
+    <%= f.label(:subject, :class => "control-label") %>
+    <div class="controls">
+      <%= f.text_field(:subject, :class => "input-xlarge") %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label(:body, :class => "control-label") %>
+    <div class="controls">
+      <%= f.text_area(:body, :class => "input-xlarge", :rows => 10) %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit("Save", :class=>"btn btn-primary", :role => "button", :title => "Save this mailing.") %>
+    <%= submit_tag("Cancel", :class => "btn btn-inverse", :role => "button", :title => "Discard changes and return to the Home screen.", :confirm => "Are you sure you want to discard the changes to this mailing?") %>
+  </div>
+  </fieldset>
+<% end %>
