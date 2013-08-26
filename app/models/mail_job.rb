@@ -2,15 +2,16 @@ class MailJob < Struct.new(:id)
   include ApplicationHelper
 
   def enqueue(job)
-    log_worker_msg(nil, id,  "[ENQUEUE] mail_job has been put into the queue")
+    log_worker_msg(job, id,  "[ENQUEUE] mail_job has been put into the queue")
   end
 
   def perform
+    log_worker_msg(nil, id,  "[PERFORM] mail_job is performing the 'deliver' task...")
     Mailing.deliver(id)
   end
 
   def before(job)
-    log_worker_msg(nil, id, "[START] mail_job is starting!")
+    log_worker_msg(job, id, "[START] mail_job is starting!")
   end
 
   def after(job)

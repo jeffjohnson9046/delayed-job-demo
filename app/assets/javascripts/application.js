@@ -20,10 +20,13 @@ $(function() {
     //  curl http://localhost:9292/faye -d 'message={ "channel":"/messages/new", "data":"hola" }'.
     var fayeClient = new Faye.Client('http://localhost:9292/faye');
     var subscription = fayeClient.subscribe("/messages/new", function(data) {
-        alert(data.message === undefined ? data : data.message);
+        //alert(data.message === undefined ? data : data.message);
+
+        writeToLog(data);
     });
     subscription.callback(function() {
-        alert("Subscription active!");
+        //alert("Subscription active!");
+        writeToLog("Subscription Active!");
     });
 
     subscription.errback(function(ex) {
@@ -36,4 +39,9 @@ $(function() {
         publication.callback(function() { alert("Message sent!"); });
         publication.errback(function(ex) { alert(ex.message); });
     });
+
+    function writeToLog(content) {
+        var lineItem = $('<li></li>').append(content);
+        $('#log ul').append(lineItem);
+    }
 });
